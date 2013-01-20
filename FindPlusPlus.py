@@ -4,7 +4,6 @@ import sublime_plugin
 
 # Class to make Find matching easier
 class Finder:
-    # TODO: Is this how constructors work in Python?
     def __init__(self, settings):
         # Save settings for later
         # TODO: We might just read directly from settings?
@@ -21,11 +20,36 @@ class FindPlusPlus(sublime_plugin.EventListener):
         file_name = view.file_name() or ''
         if file_name.endswith('FindPlusPlus.py'):
             print "focus gained"
-            a = FindResults('hey')
+            # a = FindResults('hey')
+            # now
+            FindNow()
             pass
 
 
-# TODO: Class for searching options
+# Class for search panel
+class FindPanel:
+    def __init__(self):
+        pass
+
+
+# DEV: Proof of concept for getting search results from page
+class FindNow:
+    def __init__(self):
+        # Get the active view
+        view = self.get_active_view()
+
+        # Get search results
+        results = view.find_all('now')
+
+        print results
+
+
+    def get_window(self):
+        return sublime.active_window()
+
+    def get_active_view(self):
+        window = self.get_window()
+        return window.active_view()
 
 
 # Class to handle find results
