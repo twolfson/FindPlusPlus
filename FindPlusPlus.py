@@ -5,6 +5,10 @@ import sublime_plugin
 # Command to delete a line (used by Find Results)
 class FindppDeleteLineCommand(sublime_plugin.TextCommand):
     def run(self, view):
+        # TODO: Get region
+        # TODO: Expand region to line
+        # TODO: Delete line
+        # Note: We could use Packages/Default/Delete Line.sublime-macro but it is a macro
         print "test"
 
 
