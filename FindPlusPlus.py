@@ -34,22 +34,48 @@ class FindResults:
         # TODO: All actions inside of init should be methods themself?
         # Get the window
         window = self.get_window()
+        self.window = window
+
+        # Save name of output panel
+        panel_name = 'FindPPResults'
+        self.panel_name = panel_name
 
         # Get a panel
-        results = window.get_output_panel('FindPPResults')
+        results = window.get_output_panel(panel_name)
+        self.results = results
 
+        # Show the panel
+        self.show()
+
+        # Write out some content
+        self.write('hello world')
+        pass
+
+    def get_window(self):
+        return sublime.active_window()
+
+    def output_name(self):
+        return 'output.' + self.panel_name
+
+    def show(self):
         # Open the panel
-        window.run_command('show_panel', {'panel': 'output.FindPPResults'})
+        output_name = self.output_name()
+        self.window.run_command('show_panel', {'panel': output_name})
+
+    def hide(self):
+        # Hide the panel
+        output_name = self.output_name()
+        self.window.run_command('hide_panel', {'panel': output_name})
+
+    def write(self, content):
+        # Grab the result panel
+        results = self.results
 
         # Begin editing it
         edit = results.begin_edit()
 
         # Insert some text
-        results.insert(edit, 0, 'hello')
+        results.insert(edit, 0, content)
 
         # Stop editing
         results.end_edit(edit)
-        pass
-
-    def get_window(self):
-        return sublime.active_window()
