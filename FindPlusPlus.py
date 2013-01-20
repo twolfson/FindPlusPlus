@@ -39,7 +39,7 @@ class FindResults:
         results = window.get_output_panel('FindPPResults')
 
         # Open the panel
-        window.run_command('show_panel', 'output.FindPPResults')
+        window.run_command('show_panel', {'panel': 'output.FindPPResults'})
 
         # Begin editing it
         edit = results.begin_edit()
