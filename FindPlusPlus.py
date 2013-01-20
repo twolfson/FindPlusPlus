@@ -2,6 +2,12 @@ import sublime
 import sublime_plugin
 
 
+# Command to delete a line (used by Find Results)
+class FindppDeleteLineCommand(sublime_plugin.TextCommand):
+    def run(self, view):
+        print "test"
+
+
 # Class to make Find matching easier
 class Finder:
     def __init__(self, settings):
@@ -16,16 +22,17 @@ class Finder:
 # DEV: On focus of a window, give me an error message
 class FindPlusPlus(sublime_plugin.EventListener):
     def on_activated(self, view):
-        # If this is a FindPlusPlus.py
-        file_name = view.file_name() or ''
-        if file_name.endswith('FindPlusPlus.py'):
-            print "focus gained"
-            # a = FindResults('hey')
-            # now
-            # FindNow()
-            matches = [sublime.Region(646, 649), sublime.Region(1066, 1069)]
-            print matches
-            pass
+        pass
+        # # If this is a FindPlusPlus.py
+        # file_name = view.file_name() or ''
+        # if file_name.endswith('FindPlusPlus.py'):
+        #     print "focus gained"
+        #     # now
+        #     # FindNow()
+        #     # matches = [sublime.Region(646, 649), sublime.Region(1066, 1069)]
+        #     # print matches
+        #     FindResults('hey')
+        #     pass
 
 
 # Class for search panel

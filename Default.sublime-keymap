@@ -1,0 +1,4 @@
+[
+  { "keys": ["delete"], "command": "findpp_delete_line" },
+  { "keys": ["ctrl+d"], "command": "plain_tasks_complete","context": [{ "key": "selector", "operator": "equal", "operand": "text.todo" }] }
+]
