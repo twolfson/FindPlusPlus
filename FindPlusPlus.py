@@ -40,6 +40,15 @@ class FindResults:
 
         # Open the panel
         window.run_command('show_panel', 'output.FindPPResults')
+
+        # Begin editing it
+        edit = results.begin_edit()
+
+        # Insert some text
+        results.insert(edit, 0, 'hello')
+
+        # Stop editing
+        results.end_edit(edit)
         pass
 
     def get_window(self):
