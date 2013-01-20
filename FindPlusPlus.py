@@ -18,13 +18,12 @@ class Finder:
 class FindPlusPlus(sublime_plugin.EventListener):
     def on_activated(self, view):
         # If this is a FindPlusPlus.py
-        file_name = view.file_name()
+        file_name = view.file_name() or ''
         if file_name.endswith('FindPlusPlus.py'):
-            print 'yep'
+            print "focus gained"
+            a = FindResults('hey')
+            pass
 
-#         print "focus gained"
-#         a = FindResults('hey')
-#         pass
 
 # TODO: Class for searching options
 
