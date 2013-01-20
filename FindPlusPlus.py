@@ -4,8 +4,25 @@ import sublime_plugin
 
 # Command to delete a line (used by Find Results)
 class FindppDeleteLineCommand(sublime_plugin.TextCommand):
-    def run(self, view):
-        # TODO: Get region
+    def run(self, edit):
+        # Localize view
+        view = self.view
+
+        # Open an edit
+        edit = view.begin_edit()
+
+        # For each region in selection
+        for region in view.sel():
+            # Get the region of the line
+            line = view.line(region)
+
+            # TODO: This might get annoying without a reverse sort
+            # Delete the line
+            view.erase(edit, line)
+
+        # Stop the edit
+        view.end_edit(edit)
+
         # TODO: Expand region to line
         # TODO: Delete line
         # Note: We could use Packages/Default/Delete Line.sublime-macro but it is a macro
