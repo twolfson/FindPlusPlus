@@ -1,4 +1,4 @@
-# import sublime
+import sublime
 import sublime_plugin
 
 
@@ -17,9 +17,14 @@ class Finder:
 # DEV: On focus of a window, give me an error message
 class FindPlusPlus(sublime_plugin.EventListener):
     def on_activated(self, view):
-        print "focus gained"
-        a = FindResults('hey')
-        pass
+        # If this is a FindPlusPlus.py
+        file_name = view.file_name()
+        if file_name.endswith('FindPlusPlus.py'):
+            print 'yep'
+
+#         print "focus gained"
+#         a = FindResults('hey')
+#         pass
 
 # TODO: Class for searching options
 
@@ -27,5 +32,16 @@ class FindPlusPlus(sublime_plugin.EventListener):
 # Class to handle find results
 class FindResults:
     def __init__(self, settings):
-        print 'init'
+        # TODO: All actions inside of init should be methods themself?
+        # Get the window
+        window = self.get_window()
+
+        # Get a panel
+        results = window.get_output_panel('FindPPResults')
+
+        # Open the panel
+        window.run_command('show_panel', 'output.FindPPResults')
         pass
+
+    def get_window(self):
+        return sublime.active_window()
