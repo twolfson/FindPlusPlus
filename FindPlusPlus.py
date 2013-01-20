@@ -5,7 +5,7 @@ import sublime_plugin
 # Command to delete a line (used by Find Results)
 class FindppDeleteLineCommand(sublime_plugin.TextCommand):
     def run(self, edit):
-        # Note: We could use Packages/Default/Delete Line.sublime-macro but it is a macro
+        # Note: This is blantantly ripped from Packages/Default/Delete Line.sublime-macro
         # [
         #     {"command": "expand_selection", "args": {"to": "line"}},
         #     {"command": "add_to_kill_ring", "args": {"forward": true}},
@@ -15,23 +15,10 @@ class FindppDeleteLineCommand(sublime_plugin.TextCommand):
         # Localize view
         view = self.view
 
-        # Open an edit
-        edit = view.begin_edit()
-
-        # For each region in selection
-        # TODO: These might be in numeric order and collide without a reverse sort
-        for region in view.sel():
-            # Get the region of the line
-            line = view.line(region)
-
-            # TODO: Extend the region to the line feed
-
-            # Delete the line
-            view.erase(edit, line)
-
-        # Stop the edit
-        view.end_edit(edit)
-
+        # Expand selection to line, include line feed, delete lines
+        view.run_command("expand_selection", {"to": "line"})
+        view.run_command("add_to_kill_ring", {"forward": True})
+        view.run_command("left_delete")
 
 # Class to make Find matching easier
 class Finder:
