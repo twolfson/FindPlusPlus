@@ -1,6 +1,9 @@
 import sublime
 import sublime_plugin
 
+# TODO: Definitely use code from Default/Find in Files.sublime-menu
+# We are already using Default/Find Results.hidden-tmLanguage for Default.sublime-keymap insights
+
 
 # Command to delete a line (used by Find Results)
 class FindppDeleteLineCommand(sublime_plugin.TextCommand):
@@ -20,6 +23,8 @@ class FindppDeleteLineCommand(sublime_plugin.TextCommand):
         view.run_command("add_to_kill_ring", {"forward": True})
         view.run_command("left_delete")
 
+# TODO: If this is a file name we are deleting (e.g. start of a set of results), delete them all
+
 
 # Class to make Find matching easier
 class Finder:
@@ -34,8 +39,17 @@ class Finder:
 
 # DEV: On focus of a window, give me an error message
 class FindPlusPlus(sublime_plugin.EventListener):
-    def on_activated(self, view):
-        pass
+    # def on_load(self, view):
+    #     # sublime.error_message('activated')
+    #     sublime.error_message('loaded')
+    #     pass
+
+    # def on_modified(self, view):
+    #     sublime.error_message('modified')
+
+    # def on_activated(self, view):
+    #     sublime.error_message('activated')
+    #     pass
         # # If this is a FindPlusPlus.py
         # file_name = view.file_name() or ''
         # if file_name.endswith('FindPlusPlus.py'):
