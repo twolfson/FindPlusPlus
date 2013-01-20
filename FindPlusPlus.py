@@ -20,6 +20,7 @@ class FindppDeleteLineCommand(sublime_plugin.TextCommand):
         view.run_command("add_to_kill_ring", {"forward": True})
         view.run_command("left_delete")
 
+
 # Class to make Find matching easier
 class Finder:
     def __init__(self, settings):

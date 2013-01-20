@@ -1,4 +1,4 @@
 [
-  { "keys": ["ctrl+u"], "command": "findpp_delete_line" },
-  { "keys": ["ctrl+d"], "command": "plain_tasks_complete","context": [{ "key": "selector", "operator": "equal", "operand": "text.todo" }] }
+  { "keys": ["backspace"], "command": "findpp_delete_line","context": [{ "key": "selector", "operator": "equal", "operand": "text.find-in-files" }]  },
+  { "keys": ["delete"], "command": "findpp_delete_line","context": [{ "key": "selector", "operator": "equal", "operand": "text.find-in-files" }]  }
 ]
