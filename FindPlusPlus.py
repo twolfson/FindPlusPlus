@@ -22,7 +22,9 @@ class FindPlusPlus(sublime_plugin.EventListener):
             print "focus gained"
             # a = FindResults('hey')
             # now
-            FindNow()
+            # FindNow()
+            matches = [sublime.Region(646, 649), sublime.Region(1066, 1069)]
+            print matches
             pass
 
 
@@ -31,6 +33,7 @@ class FindPanel:
     def __init__(self):
         pass
 
+# TODO: Sooner rather than later, deletion of row via 'delete'
 
 # DEV: Proof of concept for getting search results from page
 class FindNow:
@@ -41,7 +44,9 @@ class FindNow:
         # Get search results
         results = view.find_all('now')
 
+        # List of sublime.regions =)
         print results
+        print results.length
 
 
     def get_window(self):
