@@ -1,6 +1,8 @@
 import sublime
 import sublime_plugin
 
+import re
+
 # Search dirs
 # /home/todd/Downloads/Sublime Text 2/Pristine Packages/,/home/todd/.config/sublime-text-2/Packages
 
@@ -46,8 +48,8 @@ class FindResults:
         # Save the view for later
         self.view = view
 
-        # Create a junk size
-        self.lastResetSize = -1
+        # Save helper variables
+        self.is_loading = False
 
     def check_reset(self):
         # Grab the view
@@ -57,10 +59,18 @@ class FindResults:
         sel = view.sel()
         originSelected = len(sel) == 1 and sel[0].a == 0 and sel[0].b == 0
 
-        # and if the size has changed
-        size = view.size()
-        print size
-        print view.substr(sublime.Region(0, size))
+        if (not originSelected):
+            return False
+
+        # and the second to last line is not '0 matches across 0 files', '1 match in 1 file' or '115 matches across 4 files'
+        contentRegion = sublime.Region(0, view.size())
+        content = view.substr(contentRegion)
+        print re.search('\d+ (matches across|match in) \d+ files?', content)
+
+        # # and if the size has changed
+        # size = view.size()
+        # print size
+        # print view.substr(sublime.Region(0, size))
 
         # TODO: We can also do sniffing against if the search terms have changed
 
