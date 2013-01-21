@@ -72,14 +72,18 @@ class FindResults:
         if (matchResults == None):
             return False
 
-        matchLine = matchResults.group(0)
+        # Notepad++ reads 'Search "term" (n hits in m files)'
+        # http://cybernetnews.com/find-replace-multiple-files/
 
-        firstLine = view.line(0)
-        firstLineEnd = firstLine.b
+        # DEV: Spit out a bunch of match results at the head of search results
+        # matchLine = matchResults.group(0)
 
-        edit = view.begin_edit()
-        view.insert(edit, firstLineEnd, '\n' + matchLine)
-        view.end_edit(edit)
+        # firstLine = view.line(0)
+        # firstLineEnd = firstLine.b
+
+        # edit = view.begin_edit()
+        # view.insert(edit, firstLineEnd, '\n' + matchLine)
+        # view.end_edit(edit)
 
         # # and if the size has changed
         # size = view.size()
@@ -125,6 +129,11 @@ class FindPlusPlus(sublime_plugin.EventListener):
                 results = view.findResults
             except AttributeError:
                 results = FindResults(view)
+
+            # Show the fold buttons
+            # TODO: This doesn't fold for multiple matches (it breaks at ...)
+            view.settings().set("fade_fold_buttons", False)
+
 
 
             results.check_reset()
