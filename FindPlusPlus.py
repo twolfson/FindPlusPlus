@@ -42,16 +42,44 @@ class Finder:
 
 # DEV: On focus of a window, give me an error message
 class FindPlusPlus(sublime_plugin.EventListener):
+    def on_new(self, view):
+        print "new"
+
+    def on_close(self, view):
+        print "close"
+
     def on_load(self, view):
     #     # sublime.error_message('activated')
     #     sublime.error_message('loaded')
         print "loaded"
         pass
 
+    # def on_activated(self, view):
+    #     print "activated"
+    #     print view.settings().get('syntax')
+    #     print view.visible_region()
+
+    # def on_deactivated(self, view):
+    #     print "deactivated"
+    #     print view.settings().get('syntax')
+    #     print view.visible_region()
+
+    def on_selection_modified(self, view):
+        print "sel modified"
+        print view.settings().get('syntax')
+        print view.visible_region()
+        print view.sel()
+
     def on_modified(self, view):
+        # Grab the syntax
+        syntax = view.settings().get('syntax')
+
+        # If we are in a Find Results panel
+        if (syntax == "Packages/Default/Find Results.hidden-tmLanguage"):
+            print "find results"
     #     sublime.error_message('modified')
-        print "modified"
-        print("size", view.size())
+        # print "modified"
+        # print("size", view.size())
         # print("name", view.name())
         # print("file_name", view.file_name())
         # print("is_loading", view.is_loading())
