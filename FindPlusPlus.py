@@ -28,6 +28,7 @@ class FindPlusPlusDeleteLineCommand(sublime_plugin.TextCommand):
         view.run_command("add_to_kill_ring", {"forward": True})
         view.run_command("left_delete")
 
+# TODO: For full blown implementation, result stacking and double click to fold/unfold
 
 # Class to make Find matching easier
 class Finder:
@@ -38,6 +39,31 @@ class Finder:
 
     def find(self, view):
         pass
+
+# Class for FindResults
+class FindResults:
+    def __init__(self, view):
+        # Save the view for later
+        self.view = view
+
+        # Create a junk size
+        self.lastResetSize = -1
+
+    def check_reset(self):
+        # Grab the view
+        view = self.view
+
+        # If the selection is [(0, 0)]
+        sel = view.sel()
+        originSelected = len(sel) == 1 and sel[0].a == 0 and sel[0].b == 0
+
+        # and if the size has changed
+        size = view.size()
+        print size
+        print view.substr(sublime.Region(0, size))
+
+        # TODO: We can also do sniffing against if the search terms have changed
+
 
 
 # DEV: On focus of a window, give me an error message
@@ -65,10 +91,24 @@ class FindPlusPlus(sublime_plugin.EventListener):
     #     print view.visible_region()
 
     def on_selection_modified(self, view):
-        print "sel modified"
-        print view.settings().get('syntax')
-        print view.visible_region()
-        print view.sel()
+        # Grab the syntax
+        syntax = view.settings().get('syntax')
+
+        # If we are in a Find Results panel
+        if (syntax == "Packages/Default/Find Results.hidden-tmLanguage"):
+            # Create a FindResults wrapper
+            try:
+                results = view.findResults
+            except AttributeError:
+                results = FindResults(view)
+
+
+            results.check_reset()
+        #     print "find results"
+        # print "sel modified"
+        # print view.settings().get('syntax')
+        # print view.visible_region()
+        # print view.sel()
 
     def on_modified(self, view):
         # Grab the syntax
@@ -134,54 +174,54 @@ class FindNow:
         return window.active_view()
 
 
-# Class to handle find results
-class FindResults:
-    def __init__(self, settings):
-        # TODO: All actions inside of init should be methods themself?
-        # Get the window
-        window = self.get_window()
-        self.window = window
+# # Class to handle find results
+# class FindResults:
+#     def __init__(self, settings):
+#         # TODO: All actions inside of init should be methods themself?
+#         # Get the window
+#         window = self.get_window()
+#         self.window = window
 
-        # Save name of output panel
-        panel_name = 'FindPPResults'
-        self.panel_name = panel_name
+#         # Save name of output panel
+#         panel_name = 'FindPPResults'
+#         self.panel_name = panel_name
 
-        # Get a panel
-        results = window.get_output_panel(panel_name)
-        self.results = results
+#         # Get a panel
+#         results = window.get_output_panel(panel_name)
+#         self.results = results
 
-        # Show the panel
-        self.show()
+#         # Show the panel
+#         self.show()
 
-        # Write out some content
-        self.write('hello world')
-        pass
+#         # Write out some content
+#         self.write('hello world')
+#         pass
 
-    def get_window(self):
-        return sublime.active_window()
+#     def get_window(self):
+#         return sublime.active_window()
 
-    def output_name(self):
-        return 'output.' + self.panel_name
+#     def output_name(self):
+#         return 'output.' + self.panel_name
 
-    def show(self):
-        # Open the panel
-        output_name = self.output_name()
-        self.window.run_command('show_panel', {'panel': output_name})
+#     def show(self):
+#         # Open the panel
+#         output_name = self.output_name()
+#         self.window.run_command('show_panel', {'panel': output_name})
 
-    def hide(self):
-        # Hide the panel
-        output_name = self.output_name()
-        self.window.run_command('hide_panel', {'panel': output_name})
+#     def hide(self):
+#         # Hide the panel
+#         output_name = self.output_name()
+#         self.window.run_command('hide_panel', {'panel': output_name})
 
-    def write(self, content):
-        # Grab the result panel
-        results = self.results
+#     def write(self, content):
+#         # Grab the result panel
+#         results = self.results
 
-        # Begin editing it
-        edit = results.begin_edit()
+#         # Begin editing it
+#         edit = results.begin_edit()
 
-        # Insert some text
-        results.insert(edit, 0, content)
+#         # Insert some text
+#         results.insert(edit, 0, content)
 
-        # Stop editing
-        results.end_edit(edit)
+#         # Stop editing
+#         results.end_edit(edit)
