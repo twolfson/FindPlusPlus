@@ -65,7 +65,21 @@ class FindResults:
         # and the second to last line is not '0 matches across 0 files', '1 match in 1 file' or '115 matches across 4 files'
         contentRegion = sublime.Region(0, view.size())
         content = view.substr(contentRegion)
-        print re.search('\d+ (matches across|match in) \d+ files?', content)
+        matchResults = re.search('\d+ (matches across|match in) \d+ files?', content)
+
+        # TODO: This is temporary, I am just playing around with inserting new content at the end of search
+        # TODO: Each of this sub-parts should be OOP methods
+        if (matchResults == None):
+            return False
+
+        matchLine = matchResults.group(0)
+
+        firstLine = view.line(0)
+        firstLineEnd = firstLine.b
+
+        edit = view.begin_edit()
+        view.insert(edit, firstLineEnd, '\n' + matchLine)
+        view.end_edit(edit)
 
         # # and if the size has changed
         # size = view.size()
