@@ -45,10 +45,22 @@ class FindPlusPlus(sublime_plugin.EventListener):
     def on_load(self, view):
     #     # sublime.error_message('activated')
     #     sublime.error_message('loaded')
+        print "loaded"
         pass
 
-    # def on_modified(self, view):
+    def on_modified(self, view):
     #     sublime.error_message('modified')
+        print "modified"
+        print("size", view.size())
+        # print("name", view.name())
+        # print("file_name", view.file_name())
+        # print("is_loading", view.is_loading())
+        # print("is_dirty", view.is_dirty())
+        # print view.settings().get('syntax')
+        # print view.window().views()
+        # print view.is_read_only()
+        # print view.id()
+        # print view.buffer_id()
 
     # def on_activated(self, view):
     #     sublime.error_message('activated')
