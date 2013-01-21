@@ -1,4 +1,4 @@
 [
-  { "keys": ["backspace"], "command": "findpp_delete_line","context": [{ "key": "selector", "operator": "equal", "operand": "text.find-in-files" }]  },
-  { "keys": ["delete"], "command": "findpp_delete_line","context": [{ "key": "selector", "operator": "equal", "operand": "text.find-in-files" }]  }
+  { "keys": ["backspace"], "command": "find_plus_plus_delete_line","context": [{ "key": "selector", "operator": "equal", "operand": "text.find-in-files" }]  },
+  { "keys": ["delete"], "command": "find_plus_plus_delete_line","context": [{ "key": "selector", "operator": "equal", "operand": "text.find-in-files" }]  }
 ]

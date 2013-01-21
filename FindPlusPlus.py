@@ -1,12 +1,15 @@
 import sublime
 import sublime_plugin
 
+# Search dirs
+# /home/todd/Downloads/Sublime Text 2/Pristine Packages/,/home/todd/.config/sublime-text-2/Packages
+
 # TODO: Definitely use code from Default/Find in Files.sublime-menu
 # We are already using Default/Find Results.hidden-tmLanguage for Default.sublime-keymap insights
 
 
 # Command to delete a line (used by Find Results)
-class FindppDeleteLineCommand(sublime_plugin.TextCommand):
+class FindPlusPlusDeleteLineCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         # Note: This is blantantly ripped from Packages/Default/Delete Line.sublime-macro
         # [
@@ -18,12 +21,12 @@ class FindppDeleteLineCommand(sublime_plugin.TextCommand):
         # Localize view
         view = self.view
 
+        # TODO: If this is a file name we are deleting (e.g. start of a set of results), delete them all
+
         # Expand selection to line, include line feed, delete lines
         view.run_command("expand_selection", {"to": "line"})
         view.run_command("add_to_kill_ring", {"forward": True})
         view.run_command("left_delete")
-
-# TODO: If this is a file name we are deleting (e.g. start of a set of results), delete them all
 
 
 # Class to make Find matching easier
@@ -39,10 +42,10 @@ class Finder:
 
 # DEV: On focus of a window, give me an error message
 class FindPlusPlus(sublime_plugin.EventListener):
-    # def on_load(self, view):
+    def on_load(self, view):
     #     # sublime.error_message('activated')
     #     sublime.error_message('loaded')
-    #     pass
+        pass
 
     # def on_modified(self, view):
     #     sublime.error_message('modified')
