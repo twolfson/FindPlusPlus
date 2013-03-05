@@ -64,7 +64,10 @@ class FppFindInProjectCommand(FppFindInPathsCommand):
     def run(self):
         self.open_paths(**{'paths': ['<open files>', '<open folders>']})
 
+# TODO: Make these settings rather than more commands -- people will only use one or the other (I think)
 # TODO: Find in project command (explicit)
 # TODO: Find in open files (explicit)
+# TODO: Find in pane files?
 
 # TODO: We can overkill it with additive/subtractive file searches -- leave those for another module
+# That is, include open file to search -- exclude open file from search
