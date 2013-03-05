@@ -1,4 +1,4 @@
-# import sublime
+import sublime
 import sublime_plugin
 
 # TODO: Definitely use code from Default/Find in Files.sublime-menu
@@ -24,8 +24,24 @@ class FindPlusPlusDeleteLineCommand(sublime_plugin.TextCommand):
 
 # TODO: Modify output from Find in Files (partial work on this in dev/exploration)
 
+
 # Use SideBarEnhancements' logic for find in current file
-# https://github.com/titoBouzout/SideBarEnhancements/blob/875fa106af2f4204aecc8827e72edf81e9442e0d/Side%20Bar.sublime-menu#L27
+# Menu -- https://github.com/titoBouzout/SideBarEnhancements/blob/875fa106af2f4204aecc8827e72edf81e9442e0d/Side%20Bar.sublime-menu#L27
+# Command -- https://github.com/titoBouzout/SideBarEnhancements/blob/875fa106af2f4204aecc8827e72edf81e9442e0d/SideBar.py#L243-L255
+class FindInPathsCommand(sublime_plugin.WindowCommand):
+    def run(self, paths=[]):
+        # Hide the search panel
+        self.window.run_command('hide_panel')
+
+        # Set up options for the current version
+        options = {"panel": "find_in_files", "where": ",".join(paths)}
+        if int(sublime.version()) < 2134:
+            options['location'] = options['where']
+            del options['where']
+
+        # Open the search path
+        self.window.run_command("show_panel", options)
 
 # TODO: Find in current file command
 # TODO: Find in project command
+# TODO: Find in open files
