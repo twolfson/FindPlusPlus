@@ -29,7 +29,7 @@ class FindPlusPlusDeleteLineCommand(sublime_plugin.TextCommand):
 # Menu -- https://github.com/titoBouzout/SideBarEnhancements/blob/875fa106af2f4204aecc8827e72edf81e9442e0d/Side%20Bar.sublime-menu#L27
 # Command -- https://github.com/titoBouzout/SideBarEnhancements/blob/875fa106af2f4204aecc8827e72edf81e9442e0d/SideBar.py#L243-L255
 class FppFindInPathsCommand(sublime_plugin.WindowCommand):
-    def run(self, paths=[]):
+    def open_paths(self, paths=[]):
         # Hide the search panel
         window = self.window
         window.run_command('hide_panel')
@@ -44,7 +44,7 @@ class FppFindInPathsCommand(sublime_plugin.WindowCommand):
         window.run_command("show_panel", options)
 
 
-class FppFindInCurrentFileCommand(sublime_plugin.WindowCommand):
+class FppFindInCurrentFileCommand(FppFindInPathsCommand):
     def run(self):
         # Grab the file name
         window = self.window
@@ -52,16 +52,17 @@ class FppFindInCurrentFileCommand(sublime_plugin.WindowCommand):
 
         # If there is one, run FppFindInPathsCommand on it
         if file_name:
-            window.run_command("fpp_find_in_paths", {'paths': [file_name]})
+            self.open_paths(**{'paths': [file_name]})
 
 
-class FppFindInOpenFilesCommand(sublime_plugin.WindowCommand):
+class FppFindInOpenFilesCommand(FppFindInPathsCommand):
     def run(self):
-        self.window.run_command("fpp_find_in_paths", {'paths': ['<open files>']})
+        self.open_paths(**{'paths': ['<open files>']})
 
-class FppFindInOpenFilesCommand(sublime_plugin.WindowCommand):
+
+class FppFindInProjectCommand(FppFindInPathsCommand):
     def run(self):
-        self.window.run_command("fpp_find_in_paths", {'paths': ['<open files>']})
+        self.open_paths(**{'paths': ['<open files>', '<open folders>']})
 
 # TODO: Find in project command (explicit)
 # TODO: Find in open files (explicit)

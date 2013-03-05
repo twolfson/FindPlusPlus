@@ -8,7 +8,7 @@
         "command": "fpp_find_in_open_files"
     },
     {
-        "caption": "Find: In Open Files (Explicit)",
-        "command": "fpp_find_in_open_files_explicit"
+        "caption": "Find: In Project",
+        "command": "fpp_find_in_project"
     }
 ]
