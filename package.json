@@ -21,15 +21,5 @@
       "url": "https://github.com/twolfson/FindPlusPlus/blob/master/LICENSE-MIT"
     }
   ],
-  "main": "lib/FindPlusPlus",
-  "engines": {
-    "node": ">= 0.6.0"
-  },
-  "scripts": {
-    "test": "grunt test"
-  },
-  "devDependencies": {
-    "grunt": "~0.3.17"
-  },
   "keywords": []
 }

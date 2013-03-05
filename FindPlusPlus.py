@@ -9,7 +9,6 @@ import re
 # TODO: Definitely use code from Default/Find in Files.sublime-menu
 # We are already using Default/Find Results.hidden-tmLanguage for Default.sublime-keymap insights
 
-
 # Command to delete a line (used by Find Results)
 class FindPlusPlusDeleteLineCommand(sublime_plugin.TextCommand):
     def run(self, edit):
