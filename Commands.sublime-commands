@@ -10,5 +10,9 @@
     {
         "caption": "Find: In Project",
         "command": "fpp_find_in_project"
+    },
+    {
+        "caption": "File: Display File Path",
+        "command": "fpp_display_file_path"
     }
 ]
