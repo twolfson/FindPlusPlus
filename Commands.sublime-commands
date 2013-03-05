@@ -1,6 +1,6 @@
 [
     {
         "caption": "Find: In Current File",
-        "command": "reveal_in_side_bar"
+        "command": "fpp_find_in_current_file"
     }
 ]
