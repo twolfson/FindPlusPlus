@@ -2,5 +2,13 @@
     {
         "caption": "Find: In Current File",
         "command": "fpp_find_in_current_file"
+    },
+    {
+        "caption": "Find: In Open Files",
+        "command": "fpp_find_in_open_files"
+    },
+    {
+        "caption": "Find: In Open Files (Explicit)",
+        "command": "fpp_find_in_open_files_explicit"
     }
 ]

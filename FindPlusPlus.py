@@ -31,7 +31,8 @@ class FindPlusPlusDeleteLineCommand(sublime_plugin.TextCommand):
 class FppFindInPathsCommand(sublime_plugin.WindowCommand):
     def run(self, paths=[]):
         # Hide the search panel
-        self.window.run_command('hide_panel')
+        window = self.window
+        window.run_command('hide_panel')
 
         # Set up options for the current version
         options = {"panel": "find_in_files", "where": ",".join(paths)}
@@ -40,7 +41,8 @@ class FppFindInPathsCommand(sublime_plugin.WindowCommand):
             del options['where']
 
         # Open the search path
-        self.window.run_command("show_panel", options)
+        window.run_command("show_panel", options)
+
 
 class FppFindInCurrentFileCommand(sublime_plugin.WindowCommand):
     def run(self):
@@ -50,7 +52,18 @@ class FppFindInCurrentFileCommand(sublime_plugin.WindowCommand):
 
         # If there is one, run FppFindInPathsCommand on it
         if file_name:
-            window.run_command("find_in_paths", {'paths': [file_name]})
+            window.run_command("fpp_find_in_paths", {'paths': [file_name]})
 
-# TODO: Find in project command
-# TODO: Find in open files
+
+class FppFindInOpenFilesCommand(sublime_plugin.WindowCommand):
+    def run(self):
+        self.window.run_command("fpp_find_in_paths", {'paths': ['<open files>']})
+
+class FppFindInOpenFilesCommand(sublime_plugin.WindowCommand):
+    def run(self):
+        self.window.run_command("fpp_find_in_paths", {'paths': ['<open files>']})
+
+# TODO: Find in project command (explicit)
+# TODO: Find in open files (explicit)
+
+# TODO: We can overkill it with additive/subtractive file searches -- leave those for another module
