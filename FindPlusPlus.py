@@ -65,6 +65,9 @@ class FppFindInProjectCommand(FppFindInPathsCommand):
         self.open_paths(**{'paths': ['<open files>', '<open folders>']})
 
 
+class FppFindInPanelCommand(
+
+
 # TODO: Make these settings rather than more commands -- people will only use one or the other (I think)
 # TODO: Find in project command (explicit)
 # TODO: Find in open files (explicit)
