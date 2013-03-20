@@ -65,22 +65,6 @@ class FppFindInProjectCommand(FppFindInPathsCommand):
         self.open_paths(**{'paths': ['<open files>', '<open folders>']})
 
 
-# Define empty callback
-def noop():
-    pass
-
-
-# Unique one-off command for personal want
-class FppDisplayFilePathCommand(sublime_plugin.WindowCommand):
-    def run(self):
-        # Grab the file name
-        window = self.window
-        file_name = window.active_view().file_name()
-
-        # Show a panel containing the file name
-        panel_items = [file_name]
-        self.window.show_quick_panel(panel_items, noop)
-
 # TODO: Make these settings rather than more commands -- people will only use one or the other (I think)
 # TODO: Find in project command (explicit)
 # TODO: Find in open files (explicit)
