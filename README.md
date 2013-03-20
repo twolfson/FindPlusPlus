@@ -14,6 +14,7 @@ This includes:
 Additional functionality has been added:
 
 - `Find: In Project` - Search all files and folders listed in the sidebar
+- `Find: In...` - Opens a panel to pick a directory to search in
 
 ## Installation
 `Find++` is available via [Package Control][pkg-ctrl] and can be found as `Find++`.
@@ -30,6 +31,7 @@ The available commands are:
 - `Find: In Current File` - Open `Find in Files` prompt with current file as target
 - `Find: In Open Files` - Open `Find in Files` prompt with open files as targets
 - `Find: In Project` - Open `Find in Files` prompt with project files and folder as targets
+- `Find: In...` - Open panel to pick directory to open `Find in Files` with as its target
 
 ![find_in_current_file](https://f.cloud.github.com/assets/902488/279675/aa312f96-9134-11e2-8d9e-bad526b3745a.png)
 

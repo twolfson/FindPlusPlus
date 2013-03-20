@@ -2,16 +2,6 @@
 
 Find functionality from Notepad++ for Sublime Text 2.
 
-This includes:
-
-- `Find: In Current File` - `Find -> In Current Document` in Notepad++
-- `Find: In Open Files` - `Find -> In Opened Documents` in Notepad++
-    - Encapsulates `Find -> Replace In Opened Documents` via `Find in Files` prompt that is opened
-
-Additional functionality has been added:
-
-- `Find: In Project` - Search all files and folders listed in the sidebar
-
 ## Documentation
 All commands are accessible via the Command Palette, `Ctrl + Shift + P` on Windows/Linux, `Command + Shift + P` on Mac.
 
@@ -20,6 +10,7 @@ The available commands are:
 - `Find: In Current File` - Open `Find in Files` prompt with current file as target
 - `Find: In Open Files` - Open `Find in Files` prompt with open files as targets
 - `Find: In Project` - Open `Find in Files` prompt with project files and folder as targets
+- `Find: In...` - Open panel to pick directory to open `Find in Files` with as its target
 
 When you search, the normal `Find in Files` search will be executed with one modification. The `Delete` and `Backspace` key will delete an entire row rather than a single character.
 
