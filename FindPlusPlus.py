@@ -29,7 +29,8 @@ class FindPlusPlusDeleteLineCommand(sublime_plugin.TextCommand):
 # Use SideBarEnhancements' logic for find in current file
 # Menu -- https://github.com/titoBouzout/SideBarEnhancements/blob/875fa106af2f4204aecc8827e72edf81e9442e0d/Side%20Bar.sublime-menu#L27
 # Command -- https://github.com/titoBouzout/SideBarEnhancements/blob/875fa106af2f4204aecc8827e72edf81e9442e0d/SideBar.py#L243-L255
-class FppFindInPathsCommand(sublime_plugin.WindowCommand):
+# class FppFindInPathsCommand(sublime_plugin.WindowCommand):
+class FppFindInPathsCommand(DirectoryPanel):
     def open_path(self, path=None):
         if path:
             self.open_paths([path])
@@ -70,12 +71,13 @@ class FppFindInProjectCommand(FppFindInPathsCommand):
         self.open_paths(**{'paths': ['<open files>', '<open folders>']})
 
 
-class FppFindInPanelCommand(FppFindInPathsCommand, DirectoryPanel):
+class FppFindInPanelCommand(FppFindInPathsCommand):
     INPUT_PANEL_CAPTION = 'Find in:'
 
     def run(self):
         # Open a search panel which will open the respective path
         self.open_panel(self.open_path)
+        # self.open_panel()
 
 
 # TODO: Make these settings rather than more commands -- people will only use one or the other (I think)
