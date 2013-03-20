@@ -13,7 +13,7 @@ This includes:
 
 Additional functionality has been added:
 
-- `Find: In Project` - Search all files listed in the sidebar
+- `Find: In Project` - Search all files and folders listed in the sidebar
 
 ## Installation
 `Find++` is available via [Package Control][pkg-ctrl] and can be found as `Find++`.
