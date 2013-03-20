@@ -76,9 +76,7 @@ class FppFindInPanelCommand(FppFindInPathsCommand):
 
     def run(self):
         # Open a search panel which will open the respective path
-        def open_path(path):
-            self.open_path(path)
-        self.open_panel(open_path)
+        self.open_panel(lambda path: self.open_path(path))
 
 # TODO: Make these settings rather than more commands -- people will only use one or the other (I think)
 # TODO: Find in project command (explicit)
