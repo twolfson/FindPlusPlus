@@ -6,7 +6,7 @@ import os
 import re
 import sublime
 import sublime_plugin
-SETTINGS_KEY = 'SublimeQuickFileCreator'
+SETTINGS_KEY = 'FindPlusPlus'
 
 
 class DirectoryPanel(sublime_plugin.WindowCommand):
