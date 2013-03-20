@@ -1,5 +1,6 @@
 import sublime
 import sublime_plugin
+import DirectoryPanel
 
 # TODO: Definitely use code from Default/Find in Files.sublime-menu
 # We are already using Default/Find Results.hidden-tmLanguage for Default.sublime-keymap insights
@@ -29,6 +30,10 @@ class FindPlusPlusDeleteLineCommand(sublime_plugin.TextCommand):
 # Menu -- https://github.com/titoBouzout/SideBarEnhancements/blob/875fa106af2f4204aecc8827e72edf81e9442e0d/Side%20Bar.sublime-menu#L27
 # Command -- https://github.com/titoBouzout/SideBarEnhancements/blob/875fa106af2f4204aecc8827e72edf81e9442e0d/SideBar.py#L243-L255
 class FppFindInPathsCommand(sublime_plugin.WindowCommand):
+    def open_path(self, path=None):
+        if path:
+            self.open_paths([path])
+
     def open_paths(self, paths=[]):
         # Hide the search panel
         window = self.window
@@ -65,7 +70,12 @@ class FppFindInProjectCommand(FppFindInPathsCommand):
         self.open_paths(**{'paths': ['<open files>', '<open folders>']})
 
 
-class FppFindInPanelCommand(
+class FppFindInPanelCommand(FppFindInPathsCommand, DirectoryPanel):
+    INPUT_PANEL_CAPTION = 'Find in:'
+
+    def run(self):
+        # Open a search panel which will open the respective path
+        this.open_panel(this.open_path)
 
 
 # TODO: Make these settings rather than more commands -- people will only use one or the other (I think)

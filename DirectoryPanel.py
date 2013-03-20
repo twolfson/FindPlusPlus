@@ -6,14 +6,15 @@ import os
 import re
 import sublime
 import sublime_plugin
+SETTINGS_KEY = 'SublimeQuickFileCreator'
 
 
-class QuickCreateFileCreatorBase(sublime_plugin.WindowCommand):
+class DirectoryPanel(sublime_plugin.WindowCommand):
     relative_paths = []
     full_torelative_paths = {}
     rel_path_start = 0
 
-    def doCommand(self, cb):
+    def open_panel(self, cb):
         self.construct_excluded_pattern()
         self.build_relative_paths()
         if len(self.relative_paths) == 1:
@@ -39,18 +40,17 @@ class QuickCreateFileCreatorBase(sublime_plugin.WindowCommand):
         if view:
             settings = self.window.active_view().settings()
 
-        if settings and settings.has('SublimeQuickFileCreator') and key in settings.get('SublimeQuickFileCreator'):
+        if settings and settings.has(SETTINGS_KEY) and key in settings.get(SETTINGS_KEY):
             # Get project-specific setting
-            results = settings.get('SublimeQuickFileCreator')[key]
+            results = settings.get(SETTINGS_KEY)[key]
         else:
             # Get user-specific or default setting
-            settings = sublime.load_settings('SublimeQuickFileCreator.sublime-settings')
+            settings = sublime.load_settings('%s.sublime-settings' % SETTINGS_KEY)
             results = settings.get(key)
         return results
 
     def build_relative_paths(self):
         folders = self.window.folders()
-        view = self.window.active_view()
         self.relative_paths = []
         self.full_torelative_paths = {}
         for path in folders:
@@ -83,45 +83,3 @@ class QuickCreateFileCreatorBase(sublime_plugin.WindowCommand):
             self.selected_dir = self.relative_paths[selected_index]
             self.selected_dir = self.full_torelative_paths[self.selected_dir]
             self.window.show_input_panel(self.INPUT_PANEL_CAPTION, '', self.file_name_input, None, None)
-
-    def file_name_input(self, file_name):
-        full_path = os.path.join(self.selected_dir, file_name)
-
-        if os.path.lexists(full_path):
-            sublime.error_message('File already exists:\n%s' % full_path)
-            return
-        else:
-            self.create_and_open_file(full_path)
-
-    def create(self, filename):
-        base, filename = os.path.split(filename)
-        self.create_folder(base)
-
-    def create_folder(self, base):
-        if not os.path.exists(base):
-            parent = os.path.split(base)[0]
-            if not os.path.exists(parent):
-                self.create_folder(parent)
-            os.mkdir(base)
-
-
-class QuickCreateFileCommand(QuickCreateFileCreatorBase):
-    INPUT_PANEL_CAPTION = 'File name:'
-
-    def run(self):
-        self.doCommand()
-
-    def create_and_open_file(self, path):
-        if not os.path.exists(path):
-            self.create(path)
-        self.window.open_file(path)
-
-
-class QuickCreateDirectoryCommand(QuickCreateFileCreatorBase):
-    INPUT_PANEL_CAPTION = 'Folder name:'
-
-    def run(self):
-        self.doCommand()
-
-    def create_and_open_file(self, path):
-        self.create_folder(path)
