@@ -6,28 +6,39 @@ import os
 import re
 import sublime
 import sublime_plugin
-SETTINGS_KEY = 'SublimeQuickFileCreator'
+SETTINGS_KEY = 'FindPlusPlus'
 
+print 'abba'
 
 class DirectoryPanel(sublime_plugin.WindowCommand):
     relative_paths = []
     full_torelative_paths = {}
     rel_path_start = 0
 
+    def complete(self):
+        selected_dir = self.selected_dir
+        print selected_dir
+        if selected_dir:
+            self.cb(selected_dir)
+
     def open_panel(self, cb):
         self.construct_excluded_pattern()
         self.build_relative_paths()
+
+        # Save callback for later
+        self.cb = cb
+        print 'hey'
         if len(self.relative_paths) == 1:
             self.selected_dir = self.relative_paths[0]
             self.selected_dir = self.full_torelative_paths[self.selected_dir]
-            self.window.show_input_panel(self.INPUT_PANEL_CAPTION, '', cb, None, None)
+            self.complete()
         elif len(self.relative_paths) > 1:
             self.move_current_directory_to_top()
             self.window.show_quick_panel(self.relative_paths, self.dir_selected)
         else:
             view = self.window.active_view()
             self.selected_dir = os.path.dirname(view.file_name())
-            self.window.show_input_panel(self.INPUT_PANEL_CAPTION, '', cb, None, None)
+            self.complete()
 
     def construct_excluded_pattern(self):
         patterns = [pat.replace('|', '\\') for pat in self.get_setting('excluded_dir_patterns')]
@@ -82,4 +93,4 @@ class DirectoryPanel(sublime_plugin.WindowCommand):
         if selected_index != -1:
             self.selected_dir = self.relative_paths[selected_index]
             self.selected_dir = self.full_torelative_paths[self.selected_dir]
-            self.window.show_input_panel(self.INPUT_PANEL_CAPTION, '', self.file_name_input, None, None)
+            self.complete()

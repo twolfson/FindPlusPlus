@@ -1,6 +1,6 @@
 import sublime
 import sublime_plugin
-import DirectoryPanel
+from DirectoryPanel import DirectoryPanel
 
 # TODO: Definitely use code from Default/Find in Files.sublime-menu
 # We are already using Default/Find Results.hidden-tmLanguage for Default.sublime-keymap insights
@@ -75,7 +75,7 @@ class FppFindInPanelCommand(FppFindInPathsCommand, DirectoryPanel):
 
     def run(self):
         # Open a search panel which will open the respective path
-        this.open_panel(this.open_path)
+        self.open_panel(self.open_path)
 
 
 # TODO: Make these settings rather than more commands -- people will only use one or the other (I think)
