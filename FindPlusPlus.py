@@ -7,7 +7,7 @@ from DirectoryPanel import DirectoryPanel
 
 
 # Command to delete a line (used by Find Results)
-class FindPlusPlusDeleteLineCommand(sublime_plugin.TextCommand):
+class FppDeleteLineCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         # DEV: This is blantantly ripped from Packages/Default/Delete Line.sublime-macro
 
@@ -21,17 +21,15 @@ class FindPlusPlusDeleteLineCommand(sublime_plugin.TextCommand):
         view.run_command("add_to_kill_ring", {"forward": True})
         view.run_command("left_delete")
 
+# Show results panel
+# Grabbed out of Packages/Default/Main.sublime-menu (ironically discovered via Find++)
+class FppShowResultsPanel(sublime_plugin.WindowCommand):
+    def run(self):
+        self.window.run_command("show_panel", {"panel": "output.find_results"})
+
 # TODO: For full blown implementation, result stacking and double click to fold/unfold
 
 # TODO: Modify output from Find in Files (partial work on this in dev/exploration)
-
-class FppModified(sublime_plugin.EventListener):
-    def on_modified(self, view):
-        pass
-        # print view, view.name(), view.id(), view.buffer_id()
-        # print view.substr(view.line(view.sel()[0]))
-        # win = view.window()
-        # print win, win.id()
 
 
 # Use SideBarEnhancements' logic for find in current file
