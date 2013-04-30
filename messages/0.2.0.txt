@@ -1,0 +1,8 @@
+# Find++ updates for 0.2.0 (2013-04-29)
+
+## Functionality
+- Added `Find: Show Results Panel` to command palette
+    - Reveals the Find Results panel
+
+## Code
+- Renamed `find_plus_plus_delete_line` to `fpp_delete_line` for function consistency

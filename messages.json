@@ -1,3 +1,4 @@
 {
-  "install": "messages/install.txt"
+  "install": "messages/install.txt",
+  "2013.04.29": "messages/0.2.0.txt"
 }

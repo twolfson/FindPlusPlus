@@ -32,6 +32,7 @@ The available commands are:
 - `Find: In Open Files` - Open `Find in Files` prompt with open files as targets
 - `Find: In Project` - Open `Find in Files` prompt with project files and folder as targets
 - `Find: In...` - Open panel to pick directory to open `Find in Files` with as its target
+- `Find: Show Results Panel` - Reveals the Find Results panel
 
 ![find_in_current_file](https://f.cloud.github.com/assets/902488/279675/aa312f96-9134-11e2-8d9e-bad526b3745a.png)
 
