@@ -25,6 +25,11 @@ class FindPlusPlusDeleteLineCommand(sublime_plugin.TextCommand):
 
 # TODO: Modify output from Find in Files (partial work on this in dev/exploration)
 
+class FppModified(sublime_plugin.EventListener):
+    def on_modified(self, view):
+        print view, view.name(), view.id(), view.buffer_id()
+        print view.visible_region()
+
 
 # Use SideBarEnhancements' logic for find in current file
 # Menu -- https://github.com/titoBouzout/SideBarEnhancements/blob/875fa106af2f4204aecc8827e72edf81e9442e0d/Side%20Bar.sublime-menu#L27
