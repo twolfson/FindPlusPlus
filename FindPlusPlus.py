@@ -27,8 +27,11 @@ class FindPlusPlusDeleteLineCommand(sublime_plugin.TextCommand):
 
 class FppModified(sublime_plugin.EventListener):
     def on_modified(self, view):
-        print view, view.name(), view.id(), view.buffer_id()
-        print view.visible_region()
+        pass
+        # print view, view.name(), view.id(), view.buffer_id()
+        # print view.substr(view.line(view.sel()[0]))
+        # win = view.window()
+        # print win, win.id()
 
 
 # Use SideBarEnhancements' logic for find in current file
