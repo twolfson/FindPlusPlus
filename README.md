@@ -1,4 +1,4 @@
-# Find++
+# Find++ [![Donate on Gittip](http://badgr.co/gittip/twolfson.png)](https://www.gittip.com/twolfson/)
 
 Find functionality from [Notepad++][npp] for [Sublime Text 2][subl].
 
