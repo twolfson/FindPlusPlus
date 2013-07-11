@@ -9,7 +9,7 @@ import sublime_plugin
 SETTINGS_KEY = 'FindPlusPlus'
 
 
-class DirectoryPanelCommand(sublime_plugin.WindowCommand):
+class DirectoryPanel(sublime_plugin.WindowCommand):
     relative_paths = []
     full_torelative_paths = {}
     rel_path_start = 0
@@ -27,7 +27,6 @@ class DirectoryPanelCommand(sublime_plugin.WindowCommand):
         self.cb = cb
 
         # If there is only one directory, return early with it
-        print 'heeey', self.relative_paths
         if len(self.relative_paths) == 1:
             self.selected_dir = self.relative_paths[0]
             self.selected_dir = self.full_torelative_paths[self.selected_dir]
@@ -65,9 +64,7 @@ class DirectoryPanelCommand(sublime_plugin.WindowCommand):
         return results
 
     def build_relative_paths(self):
-        print 'mah'
         folders = self.window.folders()
-        print 'yyy', folders
         self.relative_paths = []
         self.full_torelative_paths = {}
         for path in folders:
@@ -77,25 +74,21 @@ class DirectoryPanelCommand(sublime_plugin.WindowCommand):
                 self.full_torelative_paths[rootfolders] = path
                 self.relative_paths.append(rootfolders)
 
-            print 'mmm'
             for base, dirs, files in os.walk(path):
                 for dir in dirs:
                     relative_path = os.path.join(base, dir)[self.rel_path_start:]
                     if not self.excluded.search(relative_path):
-                        print 'zzz'
                         self.full_torelative_paths[relative_path] = os.path.join(base, dir)
-                        print 'abc'
                         self.relative_paths.append(relative_path)
 
     def move_current_directory_to_top(self):
-        print 'hai'
         view = self.window.active_view()
         if view and view.file_name():
             cur_dir = os.path.dirname(view.file_name())[self.rel_path_start:]
             if cur_dir in self.full_torelative_paths:
                 i = self.relative_paths.index(cur_dir)
                 self.relative_paths.insert(0, self.relative_paths.pop(i))
-            elif view:
+            else:
                 self.relative_paths.insert(0, os.path.dirname(view.file_name()))
         return
 

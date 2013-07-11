@@ -1,6 +1,6 @@
 import sublime
 import sublime_plugin
-from DirectoryPanel import DirectoryPanelCommand
+from DirectoryPanel import DirectoryPanel
 
 # TODO: Definitely use code from Default/Find in Files.sublime-menu
 # We are already using Default/Find Results.hidden-tmLanguage for Default.sublime-keymap insights
@@ -36,7 +36,7 @@ class FppShowResultsPanel(sublime_plugin.WindowCommand):
 # Menu -- https://github.com/titoBouzout/SideBarEnhancements/blob/875fa106af2f4204aecc8827e72edf81e9442e0d/Side%20Bar.sublime-menu#L27
 # Command -- https://github.com/titoBouzout/SideBarEnhancements/blob/875fa106af2f4204aecc8827e72edf81e9442e0d/SideBar.py#L243-L255
 # class FppFindInPathsCommand(sublime_plugin.WindowCommand):
-class FppFindInPathsCommand(DirectoryPanelCommand):
+class FppFindInPathsCommand(DirectoryPanel):
     def open_path(self, path=None):
         if path:
             self.open_paths([path])
