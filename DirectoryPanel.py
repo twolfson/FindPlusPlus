@@ -41,8 +41,8 @@ class DirectoryPanelCommand(sublime_plugin.WindowCommand):
         # Otherwise, attempt to resolve the directory of the current file
         else:
             view = self.window.active_view()
-            # self.selected_dir = os.path.dirname(view.file_name())
-            # self.complete()
+            self.selected_dir = os.path.dirname(view.file_name())
+            self.complete()
 
     def construct_excluded_pattern(self):
         patterns = [pat.replace('|', '\\') for pat in self.get_setting('excluded_dir_patterns')]
@@ -66,9 +66,38 @@ class DirectoryPanelCommand(sublime_plugin.WindowCommand):
 
     def build_relative_paths(self):
         print 'mah'
+        folders = self.window.folders()
+        print 'yyy', folders
+        self.relative_paths = []
+        self.full_torelative_paths = {}
+        for path in folders:
+            rootfolders = os.path.split(path)[-1]
+            self.rel_path_start = len(os.path.split(path)[0]) + 1
+            if not self.excluded.search(rootfolders):
+                self.full_torelative_paths[rootfolders] = path
+                self.relative_paths.append(rootfolders)
+
+            print 'mmm'
+            for base, dirs, files in os.walk(path):
+                for dir in dirs:
+                    relative_path = os.path.join(base, dir)[self.rel_path_start:]
+                    if not self.excluded.search(relative_path):
+                        print 'zzz'
+                        self.full_torelative_paths[relative_path] = os.path.join(base, dir)
+                        print 'abc'
+                        self.relative_paths.append(relative_path)
 
     def move_current_directory_to_top(self):
-        print 'x'
+        print 'hai'
+        view = self.window.active_view()
+        if view and view.file_name():
+            cur_dir = os.path.dirname(view.file_name())[self.rel_path_start:]
+            if cur_dir in self.full_torelative_paths:
+                i = self.relative_paths.index(cur_dir)
+                self.relative_paths.insert(0, self.relative_paths.pop(i))
+            elif view:
+                self.relative_paths.insert(0, os.path.dirname(view.file_name()))
+        return
 
     def dir_selected(self, selected_index):
         if selected_index != -1:
