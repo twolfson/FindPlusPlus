@@ -34,7 +34,7 @@ All commands are accessible via the Command Palette, `Ctrl + Shift + P` on Windo
 
 The `Find: In...` command opens a quick panel with relevant paths and the ability to filter.
 
-![Find in current file panel](https://f.cloud.github.com/assets/902488/279675/aa312f96-9134-11e2-8d9e-bad526b3745a.png)
+![Find in current file panel](https://f.cloud.github.com/assets/902488/860987/ba97f2b4-f5c2-11e2-9b8d-c53060cd0f59.png)
 
 When you search, the normal `Find in Files` search will be executed with one modification. The `Delete` and `Backspace` key will delete an entire row rather than a single character.
 
