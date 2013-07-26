@@ -4,14 +4,15 @@ Find code quickly in [Sublime Text][subl].
 
 This was built to allow quick shuffling between search directories. It is useful for projects using multiple repositories to isolate noise in search results.
 
-[npp]: http://notepad-plus-plus.org/
 [subl]: http://www.sublimetext.com/
 
-- `Find: In Current File` - Open `Find in Files` with `Where` as the current file
-- `Find: In Open Files` - Open `Find in Files` with `Where` as `<open files>`
-- `Find: In Project` - Open `Find in Files` with `Where` as `<open files>,<open folders>`
+- `Find: In Current File` - Opens `Find in Files` with `Where` as the current file
+- `Find: In Open Files` - Opens `Find in Files` with `Where` as `<open files>`
+- `Find: In Project` - Opens `Find in Files` with `Where` as `<open files>,<open folders>`
 - `Find: In...` - Shows panel to pick directory to open `Find in Files` with as its `Where`
 - `Find: Show Results Panel` - Reveals the `Find Results` panel
+
+![Find in Files example](https://f.cloud.github.com/assets/902488/860977/39331c12-f5c2-11e2-9de7-9769e885d111.png)
 
 ## Installation
 `Find++` is available via [Package Control][pkg-ctrl] and can be found as `Find++`.
@@ -29,15 +30,15 @@ Packages can be uninstalled via `Package Control: Remove Package`, located in th
 ## Documentation
 All commands are accessible via the Command Palette, `Ctrl + Shift + P` on Windows/Linux, `Command + Shift + P` on Mac.
 
-![command_palette](https://f.cloud.github.com/assets/902488/279674/a552365a-9134-11e2-8c89-603fbb89b606.png)
+![Find Palette](https://f.cloud.github.com/assets/902488/279674/a552365a-9134-11e2-8c89-603fbb89b606.png)
 
 The `Find: In...` command opens a quick panel with relevant paths and the ability to filter.
 
-![find_in_current_file](https://f.cloud.github.com/assets/902488/279675/aa312f96-9134-11e2-8d9e-bad526b3745a.png)
+![Find in current file panel](https://f.cloud.github.com/assets/902488/279675/aa312f96-9134-11e2-8d9e-bad526b3745a.png)
 
 When you search, the normal `Find in Files` search will be executed with one modification. The `Delete` and `Backspace` key will delete an entire row rather than a single character.
 
-![find_in_files](https://f.cloud.github.com/assets/902488/279676/acdae412-9134-11e2-9c3d-10cdaaa6daff.png)
+![Find in files results](https://f.cloud.github.com/assets/902488/279676/acdae412-9134-11e2-9c3d-10cdaaa6daff.png)
 
 ## Donating
 Donations are accepted via [gittip][].
