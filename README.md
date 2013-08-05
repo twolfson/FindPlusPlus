@@ -51,6 +51,8 @@ Support this project and [others by twolfson][gittip] via [gittip][].
 ## Inspiration
 As the name of this project suggests, this plugin was started to gain the same `Find` functionality of [Notepad++][npp].
 
+[npp]: http://notepad-plus-plus.org/
+
 ## License
 Copyright (c) 2013 Todd Wolfson
 

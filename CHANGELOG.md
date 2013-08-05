@@ -1,4 +1,6 @@
 # FindPlusPlus changelog
+0.2.5 - Corrected broken README link
+
 0.2.4 - Updated donations section
 
 0.2.3 - Updated README with new images and more developer relevant info
