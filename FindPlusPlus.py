@@ -1,6 +1,12 @@
+# Load in core dependencies
 import sublime
 import sublime_plugin
-from vendor.DirectoryPanel import DirectoryPanel
+
+# Attempt to load DirectoryPanel via Python 2 syntax, then Python 3
+try:
+    from .DirectoryPanel import DirectoryPanel
+except ValueError:
+    from DirectoryPanel import DirectoryPanel
 
 # TODO: Definitely use code from Default/Find in Files.sublime-menu
 # We are already using Default/Find Results.hidden-tmLanguage for Default.sublime-keymap insights
