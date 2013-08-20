@@ -1,6 +1,6 @@
 import sublime
 import sublime_plugin
-from DirectoryPanel import DirectoryPanel
+from vendor.DirectoryPanel import DirectoryPanel
 
 # TODO: Definitely use code from Default/Find in Files.sublime-menu
 # We are already using Default/Find Results.hidden-tmLanguage for Default.sublime-keymap insights
