@@ -19,7 +19,7 @@ This was built to allow quick shuffling between search directories. It is useful
 
 [pkg-ctrl]: http://wbond.net/sublime_packages/package_control
 
-For manual installation, run the following script in the Sublime Text 2 terminal (``ctrl+` ``) which utilizes `git clone`.
+For manual installation, run the following script in the Sublime Text terminal (``ctrl+` ``) which utilizes `git clone`.
 
 ```python
 import os; path=sublime.packages_path(); (os.makedirs(path) if not os.path.exists(path) else None); window.run_command('exec', {'cmd': ['git', 'clone', 'https://github.com/twolfson/sublime-request', 'request'], 'working_dir': path})
