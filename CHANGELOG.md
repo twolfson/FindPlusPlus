@@ -1,4 +1,6 @@
 # FindPlusPlus changelog
+0.3.2 - Removed version specific text and corrected installation script
+
 0.3.1 - Removed `package.json` to avoid confusion
 
 0.3.0 - Added Sublime Text 3 support
