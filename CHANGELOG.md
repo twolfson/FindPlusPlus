@@ -1,4 +1,6 @@
 # FindPlusPlus changelog
+0.3.0 - Added Sublime Text 3 support
+
 0.2.5 - Corrected broken README link
 
 0.2.4 - Updated donations section
