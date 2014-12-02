@@ -7,6 +7,8 @@ This was built to allow quick shuffling between search directories. It is useful
 [subl]: http://www.sublimetext.com/
 
 - `Find: In Current File` - Opens `Find in Files` with `Where` as the current file
+- `Find: In Current Folder` - Opens `Find in Files` with `Where` as the folder
+  of the current file
 - `Find: In Open Files` - Opens `Find in Files` with `Where` as `<open files>`
 - `Find: In Project` - Opens `Find in Files` with `Where` as `<open files>,<open folders>`
 - `Find: In...` - Shows panel to pick directory to open `Find in Files` with as its `Where`

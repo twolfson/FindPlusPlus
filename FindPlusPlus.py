@@ -1,4 +1,5 @@
 # Load in core dependencies
+import os
 import sublime
 import sublime_plugin
 
@@ -71,6 +72,14 @@ class FppFindInCurrentFileCommand(FppFindInPathsCommand):
         # If there is one, run FppFindInPathsCommand on it
         if file_name:
             self.open_paths(**{'paths': [file_name]})
+
+
+class FppFindInCurrentFolderCommand(FppFindInPathsCommand):
+    def run(self):
+        window = self.window
+        file_name = window.active_view().file_name()
+        if file_name:
+            self.open_paths(**{'paths': [os.path.dirname(file_name)]})
 
 
 class FppFindInOpenFilesCommand(FppFindInPathsCommand):
