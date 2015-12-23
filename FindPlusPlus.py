@@ -2,6 +2,7 @@
 import os
 import sublime
 import sublime_plugin
+import subprocess
 
 # Attempt to load DirectoryPanel via Python 2 syntax, then Python 3
 try:
@@ -102,11 +103,43 @@ class FppFindInPanelCommand(FppFindInPathsCommand):
 
 
 class FppFindViaCommandCommand(FppFindInPathsCommand):
-    def run(self, *args, **kwargs):
-        print(args, kwargs)
-        cwd = "%project_folder"
+    def run(self, args, **kwargs):
+        # Resolve our cwd
+        cwd = kwargs.get('cwd', '${project_folder}')
+
+        # If we have a template variable to replace
+        # TODO: Find a full fledged execution plugin to piggy back
+        if '${project_folder}' in cwd:
+            # Resolve the project folder
+            # https://github.com/wbond/sublime_terminal/blob/1.10.1/Terminal.py#L120-L125
+            # DEV: On ST3, there is always an active view.
+            #   Be sure to check that it's a file with a path (not temporary view)
+            if self.window.active_view() and self.window.active_view().file_name():
+                # https://github.com/wbond/sublime_terminal/blob/1.10.1/Terminal.py#L175-L178
+                active_file_name = self.window.active_view().file_name()
+                project_folder = [
+                    folder_path for folder_path in self.window.folders()
+                    if active_file_name.find(folder_path + os.sep) == 0
+                ][0]
+            elif self.window.folders():
+                project_folder = self.window.folders()[0]
+
+            # Perform our replacement
+            cwd = cwd.replace('${project_folder}', project_folder)
+
+        # Run our current command
+        # TODO: More edge cases to handle -- delimiter (default to `\n`)
+        try:
+            output = subprocess.check_output(args, cwd=cwd)
+        # Upon failure, alert the message and re-reaise the error
+        except OSError as err:
+            sublime.error_message(str(err))
+            raise
+        print(output)
+        paths = str(output).split('\n')
+
         # Open a search panel which will open the respective path
-        # self.open_panel(lambda path: self.open_path(path))
+        self.open_paths(**{'paths': paths})
 
 # TODO: Make these settings rather than more commands -- people will only use one or the other (I think)
 # TODO: Find in project command (explicit)
