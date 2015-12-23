@@ -1,4 +1,6 @@
 # FindPlusPlus changelog
+0.4.1 - Added foundry for release
+
 0.4.0 - Added "Find: In Current Folder" via @davidlesieur in #14
 
 0.3.3 - Updated messages.json to point to semver over date based semver
