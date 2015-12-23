@@ -109,6 +109,7 @@ class FppFindViaCommandCommand(FppFindInPathsCommand):
 
         # If we have a template variable to replace
         # TODO: Find a full fledged execution plugin to piggy back
+        relative_path = None
         if '${project_folder}' in cwd:
             # Resolve the project folder
             # https://github.com/wbond/sublime_terminal/blob/1.10.1/Terminal.py#L120-L125
@@ -121,13 +122,16 @@ class FppFindViaCommandCommand(FppFindInPathsCommand):
                     folder_path for folder_path in self.window.folders()
                     if active_file_name.find(folder_path + os.sep) == 0
                 ][0]
+                relative_path = os.path.relpath(project_folder, os.path.dirname(active_file_name))
             elif self.window.folders():
                 project_folder = self.window.folders()[0]
+                relative_path = './'
 
             # Perform our replacement
             cwd = cwd.replace('${project_folder}', project_folder)
 
         # Run our current command
+        # TODO: More edge cases to handle -- encoding (see Sublime Terminal)
         # TODO: More edge cases to handle -- delimiter (default to `\n`)
         try:
             output = subprocess.check_output(args, cwd=cwd)
@@ -135,8 +139,16 @@ class FppFindViaCommandCommand(FppFindInPathsCommand):
         except OSError as err:
             sublime.error_message(str(err))
             raise
-        print(output)
-        paths = str(output).split('\n')
+        # http://stackoverflow.com/a/606199
+        paths = output.decode('utf-8').split('\n')
+
+        # Remove empty strings
+        paths = [path for path in paths if path]
+
+        # Make all paths relative
+        # TODO: Need to make Windows compatible
+        if relative_path:
+            paths = ['{relative_path}/{path}'.format(relative_path=relative_path, path=path) for path in paths]
 
         # Open a search panel which will open the respective path
         self.open_paths(**{'paths': paths})
