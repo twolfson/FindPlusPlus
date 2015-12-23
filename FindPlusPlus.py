@@ -28,6 +28,7 @@ class FppDeleteLineCommand(sublime_plugin.TextCommand):
         view.run_command("add_to_kill_ring", {"forward": True})
         view.run_command("left_delete")
 
+
 # Show results panel
 # Grabbed out of Packages/Default/Main.sublime-menu (ironically discovered via Find++)
 class FppShowResultsPanel(sublime_plugin.WindowCommand):
@@ -40,8 +41,8 @@ class FppShowResultsPanel(sublime_plugin.WindowCommand):
 
 
 # Use SideBarEnhancements' logic for find in current file
-# Menu -- https://github.com/titoBouzout/SideBarEnhancements/blob/875fa106af2f4204aecc8827e72edf81e9442e0d/Side%20Bar.sublime-menu#L27
-# Command -- https://github.com/titoBouzout/SideBarEnhancements/blob/875fa106af2f4204aecc8827e72edf81e9442e0d/SideBar.py#L243-L255
+# Menu -- https://github.com/titoBouzout/SideBarEnhancements/blob/875fa106af2f4204aecc8827e72edf81e9442e0d/Side%20Bar.sublime-menu#L27  # noqa
+# Command -- https://github.com/titoBouzout/SideBarEnhancements/blob/875fa106af2f4204aecc8827e72edf81e9442e0d/SideBar.py#L243-L255  # noqa
 # class FppFindInPathsCommand(sublime_plugin.WindowCommand):
 class FppFindInPathsCommand(DirectoryPanel):
     def open_path(self, path=None):
