@@ -1,1 +1,1 @@
-ln -s $PWD ~/.config/sublime-text-2/Packages/Find++
+ln -s $PWD ~/.config/sublime-text-3/Packages/Find++
