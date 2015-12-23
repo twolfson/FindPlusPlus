@@ -1,4 +1,6 @@
 # FindPlusPlus changelog
+0.4.2 - Fixed up lint errors
+
 0.4.1 - Added foundry for release
 
 0.4.0 - Added "Find: In Current Folder" via @davidlesieur in #14
