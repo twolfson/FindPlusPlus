@@ -1,4 +1,6 @@
 # FindPlusPlus changelog
+0.4.3 - Replaced Gittip with support me page
+
 0.4.2 - Fixed up lint errors
 
 0.4.1 - Added foundry for release
