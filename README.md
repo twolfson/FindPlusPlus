@@ -42,12 +42,12 @@ When you search, the normal `Find in Files` search will be executed with one mod
 ![Find in files results](https://f.cloud.github.com/assets/902488/279676/acdae412-9134-11e2-9c3d-10cdaaa6daff.png)
 
 ## Donating
-Support this project and [others by twolfson][gittip] via [gittip][].
+Support this project and [others by twolfson][twolfson-projects] via [donations][twolfson-support-me].
 
-[![Support via Gittip][gittip-badge]][gittip]
+<http://twolfson.com/support-me>
 
-[gittip-badge]: https://rawgithub.com/twolfson/gittip-badge/master/dist/gittip.png
-[gittip]: https://www.gittip.com/twolfson/
+[twolfson-projects]: http://twolfson.com/projects
+[twolfson-support-me]: http://twolfson.com/support-me
 
 ## Inspiration
 As the name of this project suggests, this plugin was started to gain the same `Find` functionality of [Notepad++][npp].
